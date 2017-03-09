@@ -81,7 +81,7 @@ Object.defineProperty(exports, "__esModule", {
  * Created by Hasani on 3/9/2017.
  */
 
-exports.default = request = function request(obj) {
+exports.default = function (obj) {
     return new Promise(function (resolve, reject) {
         var xhr = new XMLHttpRequest();
         xhr.open(obj.method || "GET", obj.url);
@@ -123,8 +123,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (0, _request2.default)({ url: "employees.json" }).then(function (data) {
     var employees = JSON.parse(data);
     var html = '';
-    employees.forEach(function (employees) {
-        html += '\n            <div><img src=\'" + employee.picture + "\'/><div>" + employee.firstName + " " + employee.lastName + "<p>" + employee.phone + "</p></div></div>\n            ';
+    employees.forEach(function (employee) {
+        html += "<div><img src='" + employee.picture + "'/><div>" + employee.firstName + " " + employee.lastName + "<p>" + employee.phone + "</p></div></div>";
     });
     document.getElementById('list').innerHTML = html;
 }).catch(function (error) {
