@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -73,11 +73,15 @@
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
 /**
- * Created by Hasani on 3/8/2017.
+ * Created by Hasani on 3/9/2017.
  */
 
-var request = function request(obj) {
+exports.default = request = function request(obj) {
     return new Promise(function (resolve, reject) {
         var xhr = new XMLHttpRequest();
         xhr.open(obj.method || "GET", obj.url);
@@ -103,16 +107,31 @@ var request = function request(obj) {
     });
 };
 
-request({ url: "employees.json" }).then(function (data) {
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _request = __webpack_require__(0);
+
+var _request2 = _interopRequireDefault(_request);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _request2.default)({ url: "employees.json" }).then(function (data) {
     var employees = JSON.parse(data);
     var html = '';
     employees.forEach(function (employees) {
-        html += "\n            <div><img src='\" + employee.picture + \"'/><div>\" + employee.firstName + \" \" + employee.lastName + \"<p>\" + employee.phone + \"</p></div></div>\n            ";
+        html += '\n            <div><img src=\'" + employee.picture + "\'/><div>" + employee.firstName + " " + employee.lastName + "<p>" + employee.phone + "</p></div></div>\n            ';
     });
     document.getElementById('list').innerHTML = html;
 }).catch(function (error) {
     console.log(error);
-});
+}); /**
+     * Created by Hasani on 3/8/2017.
+     */
 
 /***/ })
 /******/ ]);
