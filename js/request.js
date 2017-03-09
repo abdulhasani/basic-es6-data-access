@@ -2,7 +2,7 @@
  * Created by Hasani on 3/9/2017.
  */
 
-export default request = obj => {
+export default obj => {
     return new Promise((resolve,reject) => {
         let xhr = new XMLHttpRequest();
         xhr.open(obj.method || "GET", obj.url);
