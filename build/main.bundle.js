@@ -106,8 +106,8 @@ var request = function request(obj) {
 request({ url: "employees.json" }).then(function (data) {
     var employees = JSON.parse(data);
     var html = '';
-    employees.forEach(function (employees) {
-        html += "\n            <div><img src='\" + employee.picture + \"'/><div>\" + employee.firstName + \" \" + employee.lastName + \"<p>\" + employee.phone + \"</p></div></div>\n            ";
+    employees.forEach(function (employee) {
+        html += "<div><img src='" + employee.picture + "'/><div>" + employee.firstName + " " + employee.lastName + "<p>" + employee.phone + "</p></div></div>";
     });
     document.getElementById('list').innerHTML = html;
 }).catch(function (error) {
