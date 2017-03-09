@@ -1,7 +1,7 @@
 /**
  * Created by Hasani on 3/8/2017.
  */
-import * as service from './employee-service';
+import * as service from './employee-service-mock';
 
 service.findAll()
     .then(employees => {
