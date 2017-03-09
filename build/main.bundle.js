@@ -77,39 +77,41 @@
  * Created by Hasani on 3/8/2017.
  */
 
-var request = function request(obj, succesHandler, errorHandler) {
-    var xhr = new XMLHttpRequest();
-    xhr.open(obj.method || "GET", obj.url);
-    /**
-     * detected attribut headers[]
-     */
-    if (obj.headers) {
-        Object.keys(obj.headers).forEach(function (ket) {
-            xhr.setRequestHeader(key, obj.headers[key]);
-        });
-    }
-    xhr.onload = function () {
-        if (xhr.status >= 200 && xhr.status < 300) {
-            succesHandler(xhr.response);
-        } else {
-            errorHandler(xhr.statusText);
+var request = function request(obj) {
+    return new Promise(function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open(obj.method || "GET", obj.url);
+        /**
+         * detected attribut headers[]
+         */
+        if (obj.headers) {
+            Object.keys(obj.headers).forEach(function (ket) {
+                xhr.setRequestHeader(key, obj.headers[key]);
+            });
         }
-    };
-    xhr.onerror = function () {
-        errorHandler(xhr.statusText);
-    };
-    xhr.send(obj.body);
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                resolve(xhr.response);
+            } else {
+                reject(xhr.statusText);
+            }
+        };
+        xhr.onerror = function () {
+            return reject(xhr.statusText);
+        };
+        xhr.send(obj.body);
+    });
 };
 
-request({ url: "employees.json" }, function (data) {
+request({ url: "employees.json" }).then(function (data) {
     var employees = JSON.parse(data);
     var html = '';
     employees.forEach(function (employees) {
         html += "\n            <div><img src='\" + employee.picture + \"'/><div>\" + employee.firstName + \" \" + employee.lastName + \"<p>\" + employee.phone + \"</p></div></div>\n            ";
     });
     document.getElementById('list').innerHTML = html;
-}, function (err) {
-    console.log(err);
+}).catch(function (error) {
+    console.log(error);
 });
 
 /***/ })
