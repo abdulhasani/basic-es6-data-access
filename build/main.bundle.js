@@ -149,7 +149,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 service.findAll().then(function (employees) {
     var html = '';
     employees.forEach(function (employee) {
-        html += "<div><img src='" + employee.picture + "'/><div>" + employee.firstName + " " + employee.lastName + "<p>" + employee.phone + "</p></div></div>";
+        html += '\n                <div>\n                <img src=\'' + employee.picture + '\'/><div>\n                 ' + employee.firstName + ' ' + employee.lastName + '<p>\n                ' + employee.phone + '</p></div>\n                </div>';
     });
     document.getElementById('list').innerHTML = html;
 }).catch(function (error) {
